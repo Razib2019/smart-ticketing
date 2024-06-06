@@ -10,3 +10,8 @@
 .font-roboto {
   font-family: "Roboto", sans-serif;
 }
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

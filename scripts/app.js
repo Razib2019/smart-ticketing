@@ -1,3 +1,9 @@
+const couponSection = document.getElementById("coupon-section");
+couponSection.classList.add("disabled");
+
+const nextBtn = document.getElementById("next-btn");
+nextBtn.classList.add("disabled");
+
 document
   .getElementById("go-to-buy-ticket")
   .addEventListener("click", function () {
@@ -15,6 +21,22 @@ for (const seat of seats) {
       alert("You Already Selected 4 Seats. You can't select more than 4 seats");
       return;
     }
+
+    const couponSection = document.getElementById("coupon-section");
+    if (getConvertedValue("seat-count") + 1 === 4) {
+      couponSection.classList.remove("disabled");
+    }
+
+    const nextBtn = document.getElementById("next-btn");
+    document
+      .getElementById("phone-number")
+      .addEventListener("input", function () {
+        const phoneNumber = document.getElementById("phone-number").value;
+        console.log(phoneNumber);
+        if (getConvertedValue("seat-count") + 1 >= 1 && phoneNumber) {
+          nextBtn.classList.remove("disabled");
+        }
+      });
 
     event.target.setAttribute("disabled", true);
     event.target.style.backgroundColor = "#1DD100";
@@ -76,13 +98,15 @@ function updateGrandTotal(status) {
       document.getElementById("grand-total").innerText =
         totalPrice - discountedPrice;
       createDiscountedPriceSection(discountedPrice);
-      document.getElementById("coupon-code").value = "";
+      const couponSection = document.getElementById("coupon-section");
+      couponSection.classList.add("hidden");
     } else if (couponCode == "Couple20") {
       const discountedPrice = totalPrice * 0.2;
       document.getElementById("grand-total").innerText =
         totalPrice - discountedPrice;
       createDiscountedPriceSection(discountedPrice);
-      document.getElementById("coupon-code").value = "";
+      const couponSection = document.getElementById("coupon-section");
+      couponSection.classList.add("hidden");
     } else {
       alert("Please Provide a Valid Coupon Code");
     }
