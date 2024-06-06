@@ -16,6 +16,10 @@ for (const seat of seats) {
       return;
     }
 
+    event.target.setAttribute("disabled", true);
+    event.target.style.backgroundColor = "#1DD100";
+    event.target.style.color = "white";
+
     const seatCount = getConvertedValue("seat-count");
     document.getElementById("seat-count").innerText = seatCount + 1;
 
